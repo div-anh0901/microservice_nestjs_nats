@@ -1,16 +1,11 @@
 import { Module } from '@nestjs/common';
 import {ClientsModule, Transport} from '@nestjs/microservices'
+import { UsersModule } from './users/users.module';
+import { NatsModule } from './nats-clients/natsClient.module';
+import { PaymentModule } from './payments/payments.module';
 
 @Module({
-  imports: [ClientsModule.register([
-    {
-      name: "NATS_SERVICE",
-      transport: Transport.NATS,
-      options: {
-        servers: "nats://nats"
-      }
-    }
-  ])],
+  imports: [NatsModule,UsersModule,PaymentModule],
   controllers: [],
   providers: [],
 })
